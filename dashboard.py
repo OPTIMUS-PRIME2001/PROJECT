@@ -1,5 +1,7 @@
 from tkinter import*
 from PIL import Image, ImageTk
+from Employee import employeeClass
+from supplier import supplierClass
 class IMS:
     def __init__(self, root):
         self.root = root
@@ -33,7 +35,7 @@ class IMS:
         lbl_menu = Label(LeftMenu, text = "Menu", font = ("times new roman", 20), bg = "#00ba1f").pack(side = TOP, fill = X)
         
         btn_employee = Button(LeftMenu, text = "Employee", image = self.icon_side, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
-        btn_supplier = Button(LeftMenu, text = "Supplier", image = self.icon_side, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
+        btn_supplier = Button(LeftMenu, text = "Supplier", command = self.supplier, image = self.icon_side, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
         btn_category = Button(LeftMenu, text = "Category", image = self.icon_side, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
         btn_product = Button(LeftMenu, text = "Product", image = self.icon_side, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
         btn_sales = Button(LeftMenu, text = "Sales", image = self.icon_side, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
@@ -56,7 +58,13 @@ class IMS:
         self.lbl_sales.place(x = 650, y = 300, height = 150, width = 300)
         #====footer====
         lbl_footer = Label(self.root, text = "IMS-Inventory Management System | Developed by ---\nFor any Technical Issues contact: -------", font = ("times new roman", 12), bg = "#1795ff", fg = "white").pack(side = BOTTOM, fill = X)
-        
+    
+    #==============================================================================================================================
+    
+    def supplier(self):
+        self.new_win = Toplevel(self.root)
+        self.new_obj = supplierClass(self.new_win)
+
 root = Tk()
 obj = IMS(root)
 root.mainloop()
