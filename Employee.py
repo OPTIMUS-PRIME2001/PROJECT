@@ -2,8 +2,6 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import ttk
 
-from matplotlib.pyplot import title
-
 class employeeClass:
     def __init__(self, root):
         self.root = root
