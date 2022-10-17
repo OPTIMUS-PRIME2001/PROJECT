@@ -137,7 +137,7 @@ class employeeClass:
         self.EmployeeTable.column("address",width=100)
         self.EmployeeTable.column("salary",width=100)
         self.EmployeeTable.pack(fill=BOTH,expand=1)
-        self.EmployeeTable.bind("<ButtonRelease-1",self.get_data)
+        self.EmployeeTable.bind("<ButtonRelease-1>",self.get_data)
 
         self.show()
 
@@ -240,7 +240,7 @@ class employeeClass:
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
 
-    def get_data(self):
+    def get_data(self, ev):
         f=self.EmployeeTable.focus()
         content=(self.EmployeeTable.item(f))
         row=content['values']
