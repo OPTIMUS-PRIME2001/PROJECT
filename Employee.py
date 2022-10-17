@@ -38,7 +38,7 @@ class employeeClass:
         cmb_search.current(0)
 
         txt_search=Entry(SearchFrame,textvariable=self.var_searchtxt,font=("goudy old style",15),bg="lightyellow").place(x=200,y=10)
-        btn_search=Button(SearchFrame,text="Search",font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=410,y=10,width=150,height=30)
+        btn_search=Button(SearchFrame,text="Search",command=self.search,font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=410,y=10,width=150,height=30)
         
         #==title=====
         title=Label(self.root,text="Employee Details",font=("goudy old style",15),bg="#0f4d7d",fg="white").place(x=50,y=100,width=1000)
@@ -270,20 +270,26 @@ class employeeClass:
         self.var_utype.set("Admin"),
         self.txt_address.delete('1.0',END),
         self.var_salary.set("")
+        self.var_searchtxt.set("")
         self.show()
 
     def search(self):
         con = sqlite3.connect(database = r'InventoryData.db')
         cur = con.cursor()
         try:
-            if self.var_searchby.get()=="":
-                messagebox.showinfo()
-                cur.execute("select * from employee")
-            rows=cur.fetchall()
-            self.EmployeeTable.delete(*self.EmployeeTable.get_children())
-            for row in rows:
-                self.EmployeeTable.insert('',END,values=row)
-
+            if self.var_searchby.get()=="Select":
+                messagebox.showerror("Error","Select Search By option",parent=self.root)
+            elif self.var_searchtxt.get()=="":
+                messagebox.showerror("Error","search input should be required",parent=self.root)
+            else:   
+                cur.execute("select * from employee where "+self.var_searchby.get()+"LIKE '%"+self.var_searchtxt.get()+"%")
+                rows=cur.fetchall()
+                if len(rows)!=0:
+                    self.EmployeeTable.delete(*self.EmployeeTable.get_children())
+                    for row in rows:
+                        self.EmployeeTable.insert('',END,values=row)
+                else:
+                    messagebox.showerror("Error","No record Found!!",parent=self.root)
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
 
