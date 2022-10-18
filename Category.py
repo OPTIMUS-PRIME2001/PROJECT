@@ -15,14 +15,31 @@ class categoryClass:
        #========title========
        lbl_title=Label(self.root,text="Manage Product Category",font=("goudy old style",30),bg="#184a45",fg="white",bd=3,relief=RIDGE).pack(side=TOP,fill=X,padx=10,pady=10)
        
-       lbl_name=Label(self.root,text="Enter Category",font=("goudy old style",30),bg="white").place(x=50,y=100)
-       txt_name=Entry(self.root,textvariable=self.var_name,font=("goudy old style",18),bg="lightyellow").place(x=50,y=170,width=300)
+       card_frame=Frame(self.root,bd=1,relief=RIDGE)
+       card_frame.place(x=25,y=80,width=650,height=400)
+
+       scrolly=Scrollbar(card_frame,orient=VERTICAL)
+       scrollx=Scrollbar(card_frame,orient=HORIZONTAL)
+
+       self.categoryTable=ttk.Treeview(card_frame,columns=("cid","name"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
+       scrollx.pack(side=BOTTOM,fill=X)
+       scrolly.pack(side=RIGHT,fill=Y)
+       scrollx.config(command=self.categoryTable.xview)
+       scrolly.config(command=self.categoryTable.yview)
        
-       btn_add=Button(self.root,text="ADD",font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=360,y=170,width=150,height=30)
-       btn_delete=Button(self.root,text="Delete",font=("goudy old style",15),bg="red",fg="white",cursor="hand2").place(x=520,y=170,width=150,height=30)
+       self.icon_pro = PhotoImage(file = "IMAGES/icons/Network2_icon.png")
+       #self.icon_pro = PhotoImage(file = "IMAGES/side.png")
+       self.lbl_processor = Button(card_frame, image = self.icon_pro, bd = 5,  bg="White")
+       self.lbl_processor.place(x = 10, y = 20 , height = 150, width = 130)
+
+       #lbl_name=Label(self.root,text="Enter Category",font=("goudy old style",30),bg="white").place(x=50,y=100)
+       #txt_name=Entry(self.root,textvariable=self.var_name,font=("goudy old style",18),bg="lightyellow").place(x=50,y=170,width=300)
+       
+       #btn_add=Button(self.root,text="ADD",font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=360,y=170,width=150,height=30)
+       #btn_delete=Button(self.root,text="Delete",font=("goudy old style",15),bg="red",fg="white",cursor="hand2").place(x=520,y=170,width=150,height=30)
        #=======Category Details=======
        cat_frame=Frame(self.root,bd=3,relief=RIDGE)
-       cat_frame.place(x=700,y=100,width=380,height=150)
+       cat_frame.place(x=700,y=80,width=390,height=300)
 
        scrolly=Scrollbar(cat_frame,orient=VERTICAL)
        scrollx=Scrollbar(cat_frame,orient=HORIZONTAL)
