@@ -16,7 +16,7 @@ class categoryClass:
        lbl_title=Label(self.root,text="Manage Product Category",font=("goudy old style",30),bg="#184a45",fg="white",bd=3,relief=RIDGE).pack(side=TOP,fill=X,padx=10,pady=10)
        
        card_frame=Frame(self.root,bd=1,relief=RIDGE)
-       card_frame.place(x=20,y=80,width=720,height=400)
+       card_frame.place(x=15,y=75,width=720,height=400)
 
        scrolly=Scrollbar(card_frame,orient=VERTICAL)
        scrollx=Scrollbar(card_frame,orient=HORIZONTAL)
@@ -125,7 +125,7 @@ class categoryClass:
 
        #=======Category Details=======
        cat_frame=Frame(self.root,bd=3,relief=RIDGE)
-       cat_frame.place(x=750,y=80,width=390,height=300)
+       cat_frame.place(x=750,y=75,width=390,height=300)
 
        scrolly=Scrollbar(cat_frame,orient=VERTICAL)
        scrollx=Scrollbar(cat_frame,orient=HORIZONTAL)
