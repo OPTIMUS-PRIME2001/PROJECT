@@ -124,8 +124,8 @@ class categoryClass:
        self.cT.lbl_Gaming.place(x = 570, y = Row3h , height = 150, width = 130)
 
        #=======Category Details=======
-       cat_frame=Frame(self.root,bd=3,relief=RIDGE)
-       cat_frame.place(x=750,y=75,width=390,height=300)
+       cat_frame=Frame(self.root,bd=1,relief=RIDGE)
+       cat_frame.place(x=740,y=75,width=350,height=450)
 
        scrolly=Scrollbar(cat_frame,orient=VERTICAL)
        scrollx=Scrollbar(cat_frame,orient=HORIZONTAL)
