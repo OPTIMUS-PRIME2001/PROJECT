@@ -142,7 +142,7 @@ class employeeClass:
 
         self.show()
 
-    #=================================
+    #========Functions=========================
 
     def add(self):
         con = sqlite3.connect(database = r'InventoryData.db')
