@@ -2,8 +2,8 @@ from tkinter import*
 from PIL import Image, ImageTk
 from Category import categoryClass
 from Employee import employeeClass
-from Product import ProductClass
-from Sales import SalesClass
+# from Product import ProductClass
+from Sales import salesClass
 from supplier import supplierClass
 from Sales import salesClass
 class IMS:
@@ -30,7 +30,7 @@ class IMS:
         self_bg.place(x = 0, y = 40, width = 800, height = 150)
         self.welpic = Label(lbl_clock, image = self.welcomepic,bg='grey',compound=CENTER)
         self.welpic.place(x = 570, y = 0, height = 200, width = 200)
-        self.root.wm_attributes("-transparentcolor", 'grey')
+        # self.root.wm_attributes("-transparentcolor", 'grey')
         self.note = Label(lbl_clock, text="Welcome Back PRIMUS!", font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
         self.note.place(x = 5, y = 50, width = 560, height = 80 )
 

@@ -178,7 +178,7 @@ class supplierClass:
         f=self.supplierTable.focus()
         content=(self.supplierTable.item(f))
         row=content['values']
-        #print(row)
+        print(row)
         self.var_sup_invoice.set(row[0]),
         self.var_name.set(row[1]),
         self.var_contact.set(row[2]),
