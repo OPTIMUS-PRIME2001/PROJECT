@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 from Category import categoryClass
 from Employee import employeeClass
 from supplier import supplierClass
+from Sales import salesClass
 class IMS:
     def __init__(self, root):
         self.root = root
@@ -160,7 +161,7 @@ class IMS:
 
     def sales(self):
         self.new_win = Toplevel(self.root)
-        self.new_obj = SalesClass(self.new_win)
+        self.new_obj = salesClass(self.new_win)
 
 if __name__=="__main__":
     root = Tk()
