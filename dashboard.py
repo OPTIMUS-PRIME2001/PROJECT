@@ -22,10 +22,14 @@ class IMS:
         self.welcomepic = ImageTk.PhotoImage(Image.open("IMAGES/welcome2.png").resize((245, 245), Image.ANTIALIAS))
         lbl_clock = Frame(self.root,bd=3,relief=FLAT,bg = "#f1f6f9")
         lbl_clock.place(x = 230, y = 70, width = 800, height = 200)
+
         self_bg = Label(lbl_clock, image=self.welcomebg, font = ("times new roman", 15), bg = "#f1f6f9", fg = "white")
         self_bg.place(x = 0, y = 40, width = 800, height = 150)
-        self.welpic = Label(lbl_clock, image = self.welcomepic,compound=CENTER)
+        self.welpic = Label(lbl_clock, image = self.welcomepic,bg='grey',compound=CENTER)
         self.welpic.place(x = 570, y = 0, height = 200, width = 200)
+        self.root.wm_attributes("-transparentcolor", 'grey')
+        self.note = Label(lbl_clock, text="Welcome Back PRIMUS!", font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
+        self.note.place(x = 5, y = 50, width = 560, height = 80 )
 
         #===Left Menu===
         self.MenuLogo = Image.open("IMAGES/menu_im.png")
