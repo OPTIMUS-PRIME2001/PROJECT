@@ -2,6 +2,8 @@ from tkinter import*
 from PIL import Image, ImageTk
 from Category import categoryClass
 from Employee import employeeClass
+from Product import ProductClass
+from Sales import SalesClass
 from supplier import supplierClass
 class IMS:
     def __init__(self, root):

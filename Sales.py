@@ -11,8 +11,8 @@ class SalesClass:
        self.root.config(bg="white") 
        self.root.focus_force()
        #======================
-
        
+             
 
 if __name__=="__main__":
     root=Tk()
