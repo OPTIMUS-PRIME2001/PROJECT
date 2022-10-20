@@ -50,9 +50,9 @@ class IMS:
         
         btn_employee = Button(LeftMenu, text = "Employee",command = self.employee, image = self.employee_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
         btn_supplier = Button(LeftMenu, text = "Supplier", command = self.supplier, image = self.supplier_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
-        btn_category = Button(LeftMenu, text = "Category", command=self.category, image = self.category_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
-        btn_product = Button(LeftMenu, text = "Product", image = self.product_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
-        btn_sales = Button(LeftMenu, text = "Sales", image = self.sales_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
+        btn_category = Button(LeftMenu, text = "Category", command = self.category, image = self.category_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
+        btn_product = Button(LeftMenu, text = "Product", command = self.product, image = self.product_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
+        btn_sales = Button(LeftMenu, text = "Sales", command = self.sales, image = self.sales_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
         btn_exit = Button(LeftMenu, text = "Exit", image = self.exit_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
 
         #====content====
@@ -153,6 +153,14 @@ class IMS:
     def category(self):
         self.new_win = Toplevel(self.root)
         self.new_obj = categoryClass(self.new_win) 
+    
+    def product(self):
+        self.new_win = Toplevel(self.root)
+        self.new_obj = ProductClass(self.new_win)
+
+    def sales(self):
+        self.new_win = Toplevel(self.root)
+        self.new_obj = SalesClass(self.new_win)
 
 if __name__=="__main__":
     root = Tk()
