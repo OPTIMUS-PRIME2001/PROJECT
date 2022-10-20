@@ -10,11 +10,17 @@ class salesClass:
        self.root.title("Inventory Management System")
        self.root.config(bg="white") 
        self.root.focus_force()
+<<<<<<< HEAD
        
        #title====================
        lbl_title=Label(self.root,text="View Customer Bills",font=("goudy old style",30),bg="#184a45",fg="white",bd=3,relief=RIDGE).pack(side=TOP,fill=X,padx=10,pady=10)
        
        lbl_invoice = Label(self.root, text = "Invoice No.", font = ("times new roman", 15), bg = "white").place(x = 50, y = 100)
+=======
+       #======================
+       
+             
+>>>>>>> 6b9760699382baba7950e2960ecbfd16f38bb023
 
 if __name__=="__main__":
     root=Tk()
