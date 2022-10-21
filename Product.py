@@ -151,23 +151,19 @@ class ProductClass:
                 cur.execute("Select * from PRODUCTS where pid=?",(self.var_pid.get(),))
                 row=cur.fetchone()
                 if row==None:
-                    messagebox.showerror("Error","Invalid PRODUCT",parent=self.root)
+                    messagebox.showerror("Error","Invalid Product",parent=self.root)
                 else:
-                    cur.execute("Update employee set name=?,email=?,gender=?,contact=?,dob=?,doj=?,pass=?,utype=?,address=?,salary=? WHERE eid=? ",(
+                    cur.execute("Update PRODUCTS set supplier=?,name=?,price=?,Qty=?,Status=? WHERE cid=? ",(
+                                self.var_pid.get(),
+                                self.var_cat.get(),
+                                self.var_sup.get(),
                                 self.var_name.get(),
-                                self.var_email.get(),
-                                self.var_gender.get(),
-                                self.var_contact.get(),
-                                self.var_dob.get(),
-                                self.var_doj.get(),                                
-                                self.var_pass.get(),
-                                self.var_utype.get(),
-                                self.txt_address.get('1.0',END),
-                                self.var_salary.get(),
-                                self.var_emp_id.get(),
+                                self.var_price.get(),
+                                self.var_qty.get(),                                
+                                self.var_status.get()
                     ))
                     con.commit()
-                    messagebox.showinfo("Success","Employee Updated successfully",parent=self.root)
+                    messagebox.showinfo("Success","Product Updated successfully",parent=self.root)
                     self.show()        
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
@@ -204,17 +200,14 @@ class ProductClass:
         self.var_status.set(row[6]),                                
 
     def clear(self):
-        self.var_emp_id.set(""),
-        self.var_name.set(""),
-        self.var_email.set(""),
-        self.var_gender.set("Select"),
-        self.var_contact.set(""),
-        self.var_dob.set(""),
-        self.var_doj.set(""),                                
-        self.var_pass.set(""),
-        self.var_utype.set("Admin"),
-        self.txt_address.delete('1.0',END),
-        self.var_salary.set("")
+        self.var_pid.set(""),
+        self.var_cat.set(""),
+        self.var_sup.set(""),
+        self.var_name.set("Select"),
+        self.var_price.set(""),
+        self.var_qty.set(""),
+        self.var_status.set(""),                                
+        self.var_searchby.set("Select")
         self.var_searchtxt.set("")
         self.show()
 

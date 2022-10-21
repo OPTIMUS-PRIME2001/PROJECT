@@ -271,6 +271,7 @@ class employeeClass:
         self.var_utype.set("Admin"),
         self.txt_address.delete('1.0',END),
         self.var_salary.set("")
+        self.var_searchby.set("Select")
         self.var_searchtxt.set("")
         self.show()
 
