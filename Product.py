@@ -93,7 +93,7 @@ class ProductClass:
         scrolly=Scrollbar(p_frame,orient=VERTICAL)
         scrollx=Scrollbar(p_frame,orient=HORIZONTAL)
 
-        self.ProductTable=ttk.Treeview(p_frame,columns=("pid","name","Category","Supplier","price","qty","status"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
+        self.ProductTable=ttk.Treeview(p_frame,columns=("P_id","Pname","Category","supplier","price","Qty","Status"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
 
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -101,23 +101,23 @@ class ProductClass:
         scrollx.config(command=self.ProductTable.xview)
         scrolly.config(command=self.ProductTable.yview)
 
-        self.ProductTable.heading("pid",text="P ID")
-        self.ProductTable.heading("name",text="Name")
+        self.ProductTable.heading("P_id",text="P ID")
+        self.ProductTable.heading("Pname",text="Name")
         self.ProductTable.heading("Category",text="Category")
-        self.ProductTable.heading("Supplier",text="Supplier")
+        self.ProductTable.heading("supplier",text="Supplier")
         self.ProductTable.heading("price",text="Price")
-        self.ProductTable.heading("qty",text="Quantity")
-        self.ProductTable.heading("status",text="Status")
+        self.ProductTable.heading("Qty",text="Quantity")
+        self.ProductTable.heading("Status",text="Status")
 
         self.ProductTable["show"]="headings"
 
-        self.ProductTable.column("pid",width=30)
-        self.ProductTable.column("name",width=150)
+        self.ProductTable.column("P_id",width=30)
+        self.ProductTable.column("Pname",width=150)
         self.ProductTable.column("Category",width=110)
-        self.ProductTable.column("Supplier",width=100)
+        self.ProductTable.column("supplier",width=100)
         self.ProductTable.column("price",width=100)
-        self.ProductTable.column("qty",width=100)
-        self.ProductTable.column("status",width=100)
+        self.ProductTable.column("Qty",width=100)
+        self.ProductTable.column("Status",width=100)
         self.ProductTable.pack(fill=BOTH,expand=1)
         self.ProductTable.bind("<ButtonRelease-1>",self.get_data)
 
@@ -148,12 +148,12 @@ class ProductClass:
             if self.var_name.get() == "" or self.var_sup.get()=="Empty" or self.var_sup.get()=="Select" or self.var_price.get()=="":
                 messagebox.showerror("Error","Please Select PRODUCTS",parent=root)
             else:
-                cur.execute("Select * from PRODUCTS where pid=?",(self.var_pid.get(),))
+                cur.execute("Select * from PRODUCTS where P_id=?",(self.var_pid.get(),))
                 row=cur.fetchone()
                 if row==None:
                     messagebox.showerror("Error","Invalid Product",parent=self.root)
                 else:
-                    cur.execute("Update PRODUCTS set supplier=?,name=?,price=?,Qty=?,Status=? WHERE cid=? ",(
+                    cur.execute("Update PRODUCTS set supplier=?,Pname=?,price=?,Qty=?,Status=? WHERE P_id=? ",(
                                 self.var_pid.get(),
                                 self.var_cat.get(),
                                 self.var_sup.get(),
