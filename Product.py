@@ -8,12 +8,12 @@ class ProductClass:
         self.root=root
         self.root.geometry("1100x500+220+130")
         self.root.title("Inventory Management System")
-        self.root.config(bg="white") 
+        self.root.config(bg="#f1f6f9") 
         self.root.focus_force()
         
         #=======Parent Frame===============
-        product_Frame = Frame(self.root, bd=3,relief=RIDGE,bg="White")
-        product_Frame.place(x=10,y=10,width=450,height=480)
+        product_Frame = Frame(self.root, bd=3,relief=RIDGE,bg="#f1f6f9")
+        product_Frame.place(x=10,y=10,width=400,height=480)
 
         #======Variables==========
         self.var_searchby=StringVar()
@@ -31,47 +31,53 @@ class ProductClass:
         title=Label(product_Frame,text="Manage Product Details",font=("goudy old style",18),bg="#0f4d7d",fg="white").pack(side=TOP, fill=X)
         
         #=======Column1=========
-        lbl_category = Label(product_Frame,text="Category",font=("goudy old style",18),bg="White").place(x=30,y=60)
-        lbl_supplier = Label(product_Frame,text="Supplier",font=("goudy old style",18),bg="White").place(x=30,y=110)
-        lbl_product = Label(product_Frame,text= "Name",font=("goudy old style",18),bg="White").place(x=30,y=160)
-        lbl_price = Label(product_Frame,text="Price",font=("goudy old style",18),bg="White").place(x=30,y=210)
-        lbl_Quantity = Label(product_Frame,text="Quantity",font=("goudy old style",18),bg="White").place(x=30,y=260)
-        lbl_Status=Label(product_Frame,text="Status",font=("goudy old style",18),bg="White").place(x=30,y=310)
+        lbl_Pid = Label(product_Frame,text="Product Id",font=("goudy old style",18),bg="#f1f6f9").place(x=20,y=45)
+        lbl_category = Label(product_Frame,text="Category",font=("goudy old style",18),bg="#f1f6f9").place(x=20,y=95)
+        lbl_supplier = Label(product_Frame,text="Supplier",font=("goudy old style",18),bg="#f1f6f9").place(x=20,y=145)
+        lbl_product = Label(product_Frame,text= "Name",font=("goudy old style",18),bg="#f1f6f9").place(x=20,y=195)
+        lbl_price = Label(product_Frame,text="Price",font=("goudy old style",18),bg="#f1f6f9").place(x=20,y=260)
+        lbl_Quantity = Label(product_Frame,text="Quantity",font=("goudy old style",18),bg="#f1f6f9").place(x=20,y=310)
+        lbl_Status=Label(product_Frame,text="Status",font=("goudy old style",18),bg="#f1f6f9").place(x=20,y=360)
 
         #=======Column2=====
-        cmb_cat=ttk.Combobox(product_Frame,textvariable=self.var_cat,values=("Select"),state='readonly',justify=CENTER,font=("goudy old style",15))
-        cmb_cat.place(x=150,y=60,width=200)
-        cmb_cat.current(0)
+        self.purplebuttonorg = Image.open("IMAGES/icons/Tag_cat.png")
+        self.purplebutton1 = ImageTk.PhotoImage((self.purplebuttonorg.resize((150, 35), Image.ANTIALIAS)))
+        cmb_pid=Label(product_Frame,image=self.purplebutton1, compound=LEFT,font=("goudy old style",18),bg="#f1f6f9").place(x=150,y=45,width=150)
+        
+        self.purplebutton2 = ImageTk.PhotoImage((self.purplebuttonorg.resize((200, 35), Image.ANTIALIAS)))
+        cmb_cat=Label(product_Frame,image=self.purplebutton2,font=("goudy old style",18),bg="#f1f6f9").place(x=150,y=95,width=200)
 
+        self.purplebutton3 = ImageTk.PhotoImage((self.purplebuttonorg.resize((200, 35), Image.ANTIALIAS)))
         cmb_sup=ttk.Combobox(product_Frame,textvariable=self.var_sup,values=("Select"),state='readonly',justify=CENTER,font=("goudy old style",15))
-        cmb_sup.place(x=150,y=110,width=200)
+        cmb_sup.place(x=150,y=145,width=200)
         cmb_sup.current(0)
-
-        txt_name = Entry(product_Frame, textvariable=self.var_name, font=("goudy old style",15),bg='lightyellow').place(x=150,y=160,width=200)
-        txt_price = Entry(product_Frame, textvariable=self.var_price, font=("goudy old style",15),bg='lightyellow').place(x=150,y=210,width=200)
-        txt_qty = Entry(product_Frame, textvariable=self.var_qty, font=("goudy old style",15),bg='lightyellow').place(x=150,y=260,width=200)
+        
+        txt_name = Entry(product_Frame, textvariable=self.var_name, font=("goudy old style",15),bg='lightyellow').place(x=150,y=195,width=200, height=50)
+        Label(product_Frame,text="₹", bd=1, relief=FLAT, compound=LEFT,font=("goudy old style",22,"bold"),bg="#f1f6f9").place(x=150,y=255,width=30)
+        txt_price = Entry(product_Frame, textvariable=self.var_price, font=("goudy old style",15),bg='lightyellow').place(x=180,y=260,width=170)
+        txt_qty = Entry(product_Frame, textvariable=self.var_qty, font=("goudy old style",15),bg='lightyellow').place(x=150,y=310,width=130)
+        Label(product_Frame,text="Units", bd=1, relief=FLAT, compound=LEFT,font=("goudy old style",18),bg="#f1f6f9").place(x=280,y=305,width=70)
         
         cmb_status=ttk.Combobox(product_Frame,textvariable=self.var_status,values=("Active","Inactive"),state='readonly',justify=CENTER,font=("goudy old style",15))
-        cmb_status.place(x=150,y=310,width=200)
+        cmb_status.place(x=150,y=360,width=200)
         cmb_status.current(0)
 
         #=====Button=====
-        btn_add=Button(product_Frame,text="Save",command=self.add,font=("goudy old style",15),bg="#2196f3",fg="white",cursor="hand2").place(x=10,y=400,width=100,height=40)
-        btn_update=Button(product_Frame,text="Update",command=self.update,font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=120,y=400,width=100,height=40)
-        btn_delete=Button(product_Frame,text="Delete",command=self.delete,font=("goudy old style",15),bg="#f44336",fg="white",cursor="hand2").place(x=230,y=400,width=100,height=40)
-        btn_clear=Button(product_Frame,text="Clear",command=self.clear,font=("goudy old style",15),bg="#607d8b",fg="white",cursor="hand2").place(x=340,y=400,width=100,height=40)
+
+        btn_update=Button(product_Frame,text="Update",command=self.update,font=("Roboto",15,"bold"),bg="#01b1a5",fg="white",cursor="hand2").place(x=120,y=410,width=100,height=40)
+        btn_clear=Button(product_Frame,text="Clear",command=self.clear,font=("Roboto",15,"bold"),bg="#607d8b",fg="white",cursor="hand2").place(x=240,y=410,width=100,height=40)
     
         #===Searchframe======
         SearchFrame=LabelFrame(self.root,text="Search Employee",font=("goudy old style",12,"bold"),bd=2,relief=RIDGE,bg="white")
-        SearchFrame.place(x=480,y=10,width=600,height=80)
+        SearchFrame.place(x=420,y=10,width=660,height=80)
         
         #===Options=====
         cmb_search=ttk.Combobox(SearchFrame,textvariable=self.var_searchby,values=("Select","Category","Supplier","Name"),state='readonly',justify=CENTER,font=("goudy old style",15))
         cmb_search.place(x=10,y=10,width=180)
         cmb_search.current(0)
 
-        txt_search=Entry(SearchFrame,textvariable=self.var_searchtxt,font=("goudy old style",15),bg="lightyellow").place(x=200,y=10)
-        btn_search=Button(SearchFrame,text="Search",command=self.search,font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=410,y=10,width=150,height=30)
+        txt_search=Entry(SearchFrame,textvariable=self.var_searchtxt,font=("goudy old style",15),bg="lightyellow").place(x=200,y=10,width=310)
+        btn_search=Button(SearchFrame,text="Search",command=self.search,font=("Roboto",15),bg="#4caf50",fg="white",cursor="hand2").place(x=530,y=10,width=120,height=30)
 
         #=======Product Details======
 
@@ -99,20 +105,28 @@ class ProductClass:
 
         self.ProductTable["show"]="headings"
 
-        self.ProductTable.column("eid",width=90)
+        self.ProductTable.column("pid",width=90)
         self.ProductTable.column("name",width=100)
-        self.ProductTable.column("email",width=100)
-        self.ProductTable.column("gender",width=100)
-        self.ProductTable.column("contact",width=100)
-        self.ProductTable.column("dob",width=100)
-        self.ProductTable.column("doj",width=100)
-        self.ProductTable.column("pass",width=100)
+        self.ProductTable.column("Category",width=100)
+        self.ProductTable.column("Supplier",width=100)
+        self.ProductTable.column("price",width=100)
+        self.ProductTable.column("qty",width=100)
+        self.ProductTable.column("status",width=100)
+        self.ProductTable.pack(fill=BOTH,expand=1)
         self.ProductTable.bind("<ButtonRelease-1>",self.get_data)
 
         self.show()
 
 
     #========Functions=========================
+    def fetch_cat_sup(self):
+        con = sqlite3.connect(database = r'InventoryData.db')
+        cur = con.cursor()
+        try:
+            cur.execute("Select name from supplier")
+            
+        except Exception as ex:
+            messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
 
     def add(self):
         con = sqlite3.connect(database = r'InventoryData.db')
@@ -185,28 +199,6 @@ class ProductClass:
             self.ProductTable.delete(*self.ProductTable.get_children())
             for row in rows:
                 self.ProductTable.insert('',END,values=row)
-
-        except Exception as ex:
-            messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
-
-    def delete(self):
-        con = sqlite3.connect(database = r'InventoryData.db')
-        cur = con.cursor()
-        try:
-            if self.var_emp_id.get() == "" or self.var_name.get()=="":
-                messagebox.showerror("Error","Employee ID Must be required",parent=root)
-            else:
-                cur.execute("Select * from employee where eid=?",(self.var_emp_id.get(),))
-                row=cur.fetchone()
-                if row==None:
-                    messagebox.showerror("Error","Invalid Employee ID",parent=self.root)
-                else:
-                    op = messagebox.askyesno("Confirm","Do you want to delete?",parent=self.root)
-                    if op==True:
-                        cur.execute("delete from employee where eid=?", (self.var_emp_id.get(),))
-                        con.commit()
-                        messagebox.showinfo("Delete","Employee Deleted successfull",parent=self.root)
-                        self.clear()
 
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
