@@ -57,15 +57,15 @@ class supplierClass:
         btn_clear=Button(self.root,text="Clear",command=self.clear,font=("goudy old style",15),bg="#607d8b",fg="white",cursor="hand2").place(x=540,y=370,width=110,height=35)
         
 
-        #=======Employee Details======
+        #=======Supplier Details======
 
-        emp_frame=Frame(self.root,bd=3,relief=RIDGE)
-        emp_frame.place(x=700,y=120,width=380,height=350)
+        sup_frame=Frame(self.root,bd=3,relief=RIDGE)
+        sup_frame.place(x=700,y=120,width=380,height=350)
 
-        scrolly=Scrollbar(emp_frame,orient=VERTICAL)
-        scrollx=Scrollbar(emp_frame,orient=HORIZONTAL)
+        scrolly=Scrollbar(sup_frame,orient=VERTICAL)
+        scrollx=Scrollbar(sup_frame,orient=HORIZONTAL)
 
-        self.supplierTable=ttk.Treeview(emp_frame,columns=("invoice","name","contact","desc"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
+        self.supplierTable=ttk.Treeview(sup_frame,columns=("invoice","name","contact","desc"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
 
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)

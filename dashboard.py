@@ -3,10 +3,9 @@ from PIL import Image, ImageTk
 from Category import categoryClass
 from Employee import employeeClass
 from Product import ProductClass
-# from Product import ProductClass
-from Sales import salesClass
 from supplier import supplierClass
 from Sales import salesClass
+
 class IMS:
     def __init__(self, root):
         self.root = root
