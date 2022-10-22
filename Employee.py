@@ -270,8 +270,8 @@ class employeeClass:
         self.var_pass.set(""),
         self.var_utype.set("Admin"),
         self.txt_address.delete('1.0',END),
-        self.var_salary.set("")
-        self.var_searchby.set("Select")
+        self.var_salary.set(""),
+        self.var_searchby.set("Select"),
         self.var_searchtxt.set("")
         self.show()
 
@@ -284,7 +284,7 @@ class employeeClass:
             elif self.var_searchtxt.get()=="":
                 messagebox.showerror("Error","search input should be required",parent=self.root)
             else:   
-                cur.execute("select * from employee where "+self.var_searchby.get()+"LIKE '%"+self.var_searchtxt.get()+"%")
+                cur.execute("SELECT * FROM employee WHERE " + self.var_searchby.get() + " LIKE '%" + self.var_searchtxt.get() + "%'")
                 rows=cur.fetchall()
                 if len(rows)!=0:
                     self.EmployeeTable.delete(*self.EmployeeTable.get_children())

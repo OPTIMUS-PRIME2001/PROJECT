@@ -78,7 +78,7 @@ class ProductClass:
         SearchFrame.place(x=420,y=10,width=660,height=80)
         
         #===Options=====
-        cmb_search=ttk.Combobox(SearchFrame,textvariable=self.var_searchby,values=("Select","Category","Supplier","Name"),state='readonly',justify=CENTER,font=("goudy old style",15))
+        cmb_search=ttk.Combobox(SearchFrame,textvariable=self.var_searchby,values=("Select","category","supplier","Pname"),state='readonly',justify=CENTER,font=("goudy old style",15))
         cmb_search.place(x=10,y=10,width=180)
         cmb_search.current(0)
 
@@ -146,7 +146,7 @@ class ProductClass:
         cur = con.cursor()
         try:
             if self.var_name.get() == "" or self.var_sup.get()=="Empty" or self.var_sup.get()=="Select" or self.var_price.get()=="":
-                messagebox.showerror("Error","Please Select PRODUCTS",parent=root)
+                messagebox.showerror("Error","Please Select a Product",parent=root)
             else:
                 cur.execute("Select * from PRODUCTS where P_id=?",(self.var_pid.get(),))
                 row=cur.fetchone()
@@ -154,13 +154,12 @@ class ProductClass:
                     messagebox.showerror("Error","Invalid Product",parent=self.root)
                 else:
                     cur.execute("Update PRODUCTS set supplier=?,Pname=?,price=?,Qty=?,Status=? WHERE P_id=? ",(
-                                self.var_pid.get(),
-                                self.var_cat.get(),
                                 self.var_sup.get(),
                                 self.var_name.get(),
                                 self.var_price.get(),
                                 self.var_qty.get(),                                
-                                self.var_status.get()
+                                self.var_status.get(),
+                                self.var_pid.get(),
                     ))
                     con.commit()
                     messagebox.showinfo("Success","Product Updated successfully",parent=self.root)
@@ -168,6 +167,15 @@ class ProductClass:
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
 
+    def category_decode(self,R):
+        con = sqlite3.connect(database = r'InventoryData.db')
+        cur = con.cursor()
+        if(R[2]!=16):
+            cur.execute("SELECT * FROM category WHERE cid LIKE "+str(R[2]))
+            return list(cur.fetchall()[0])[1]
+        else:
+            return "Others"
+    
     def show(self):
         con = sqlite3.connect(database = r'InventoryData.db')
         cur = con.cursor()
@@ -177,11 +185,7 @@ class ProductClass:
             self.ProductTable.delete(*self.ProductTable.get_children())
             for row in rows:
                 row = list(row)
-                if(row[2]!=16):
-                    cur.execute("SELECT * FROM category WHERE cid LIKE "+str(row[2]))
-                    row[2] = list(cur.fetchall()[0])[1]
-                else:
-                    row[2] = "Others"
+                row[2] = self.category_decode(row)
                 self.ProductTable.insert('',END,values=row)
 
         except Exception as ex:
@@ -202,12 +206,12 @@ class ProductClass:
     def clear(self):
         self.var_pid.set(""),
         self.var_cat.set(""),
-        self.var_sup.set(""),
+        self.var_sup.set("Select"),
         self.var_name.set("Select"),
         self.var_price.set(""),
         self.var_qty.set(""),
         self.var_status.set(""),                                
-        self.var_searchby.set("Select")
+        self.var_searchby.set("Select"),
         self.var_searchtxt.set("")
         self.show()
 
@@ -220,11 +224,15 @@ class ProductClass:
             elif self.var_searchtxt.get()=="":
                 messagebox.showerror("Error","search input should be required",parent=self.root)
             else:   
-                cur.execute("select * from employee where "+self.var_searchby.get()+"LIKE '%"+self.var_searchtxt.get()+"%")
+                if(self.var_searchby.get()=="category"):
+                    self.var_searchby.set(self.category_decode(cur))
+                cur.execute("SELECT * FROM PRODUCTS WHERE " + self.var_searchby.get() + " LIKE '%"+self.var_searchtxt.get()+"%'")
                 rows=cur.fetchall()
                 if len(rows)!=0:
                     self.ProductTable.delete(*self.ProductTable.get_children())
                     for row in rows:
+                        row = list(row)
+                        row[2] = self.category_decode(row)
                         self.ProductTable.insert('',END,values=row)
                 else:
                     messagebox.showerror("Error","No record Found!!",parent=self.root)
