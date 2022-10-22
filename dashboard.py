@@ -20,19 +20,26 @@ class IMS:
         #===btn_logout===
         btn_logout = Button(self.root, text = "Log Out", font = ("times new roman", 15, "bold"), bg = "#6A67CE", fg="White", cursor = "hand2").place(x = 1150, y = 10, height = 50, width = 150)
 
-        #=====clock=====
+        #=====Welcome=====
         self.welcomebg = ImageTk.PhotoImage(Image.open("IMAGES/bgcolor.png").resize((800, 150), Image.ANTIALIAS))
         self.welcomepic = ImageTk.PhotoImage(Image.open("IMAGES/welcome2.png").resize((245, 245), Image.ANTIALIAS))
-        lbl_clock = Frame(self.root,bd=3,relief=FLAT,bg = "#f1f6f9")
-        lbl_clock.place(x = 230, y = 70, width = 800, height = 200)
+        lbl_welc = Frame(self.root,bd=3,relief=FLAT,bg = "#f1f6f9")
+        lbl_welc.place(x = 230, y = 70, width = 800, height = 200)
 
-        self_bg = Label(lbl_clock, image=self.welcomebg, font = ("times new roman", 15), bg = "#f1f6f9", fg = "white")
+        self_bg = Label(lbl_welc, image=self.welcomebg, font = ("times new roman", 15), bg = "#f1f6f9", fg = "white")
         self_bg.place(x = 0, y = 40, width = 800, height = 150)
-        self.welpic = Label(lbl_clock, image = self.welcomepic,bg='grey',compound=CENTER)
-        self.welpic.place(x = 570, y = 0, height = 200, width = 200)
-        # self.root.wm_attributes("-transparentcolor", 'grey')
-        self.note = Label(lbl_clock, text="Welcome Back PRIMUS!", font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
+        #self.welpic = Label(lbl_welc, image = self.welcomepic,bg='grey',compound=CENTER)
+        #self.welpic.place(x = 570, y = 0, height = 200, width = 200)
+        self.canvas = Canvas(lbl_welc, width=200, height=180, bd=2, highlightthickness=2)
+        self.image_id = self.canvas.create_image(50,50, image=self.welcomepic)
+
+        #self.canvas.create_rectangle(245,50,345,150, fill='grey')
+        self.note = Label(lbl_welc, text="Welcome Back PRIMUS!", font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
         self.note.place(x = 5, y = 50, width = 560, height = 80 )
+
+        #====Clock=====
+        self.lbl_clock = Frame(self.root,bd=3,relief=RIDGE,bg = "white")
+        self.lbl_clock.place(x = 1040, y = 80, width = 255, height = 185)
 
         #===Left Menu===
         self.MenuLogo = Image.open("IMAGES/menu_im.png")
@@ -173,4 +180,3 @@ if __name__=="__main__":
     root = Tk()
     obj = IMS(root)
     root.mainloop()
-    
