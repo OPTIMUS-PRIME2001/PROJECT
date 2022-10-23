@@ -39,23 +39,24 @@ class IMS:
         self.note.place(x = 5, y = 50, width = 560, height = 80 )
 
         #====Clock=====
-        self.btn_bg = ImageTk.PhotoImage(Image.open("IMAGES/button_bg.png").resize((265, 150), Image.ANTIALIAS))
-        Label(self.root,image=self.btn_bg).place(x = 1040, y = 80, width = 257, height = 185)
-        self.lbl_clock = Frame(self.root,bd=0,relief=FLAT,bg = "#f1f6f9",padx=15,pady=50)
-        self.lbl_clock.place(x = 1040, y = 80, width = 257, height = 185)
+        self.btn_bg1 = ImageTk.PhotoImage(Image.open("IMAGES/button_bg.png").resize((265, 190), Image.ANTIALIAS))
+        Label(self.root,image=self.btn_bg1).place(x = 1040, y = 80, width = 257, height = 185)
+        self.lbl_clock = Frame(self.root,bd=0,relief=FLAT,bg = "White",padx=10,pady=30)
+        self.lbl_clock.place(x = 1050, y = 90, width = 239, height = 160)
         
-        self.hour_label = Label(self.lbl_clock, text = "00",  font = ("Technology", "30"),  bg = "White", fg = "#00D2FF")  
-        self.colon_label_one = Label(self.lbl_clock, text = ":", font = ("Technology", "30"), bg = "White", fg = "#00D2FF")  
-        self.min_sec_label = Label( self.lbl_clock, text = "00 : 00", font = ("Technology", "30"), bg = "White", fg = "#00D2FF")  
-        self.meridiem_label = Label( self.lbl_clock, text = "AM", font = ("Technology", "30"),  bg = "White", fg = "#00D2FF" )  
+        self.Time_label = Label( self.lbl_clock, text = "00 : 00 : 00", font = ("Technology", 30), bg = "White", fg = "#00D2FF")  
+        self.meridiem_label = Label( self.lbl_clock, text = "AM", font = ("Technology", 32),  bg = "White", fg = "#00D2FF" )  
+        Label( self.lbl_clock, text = "Hours     Minutes    Seconds",compound=LEFT, font = ("Arial",10 ),  bg = "White", fg = "#a9a9a9").place(x=0,y=64,width=185)  
+        self.day_label = Label( self.lbl_clock, text = "WEDNESDAY", compound=RIGHT,font = ("Agency FB", 23),  bg = "White", fg = "#00D2FF" )  
+        self.Date_label = Label( self.lbl_clock, text = "DD-MM-YYYY", font = ("Technology", 23),  bg = "White", fg = "#00D2FF" )  
         
         # using the grid() method to set the position of the above  
         # labels in a grid form on the window screen  
-        self.hour_label.grid(row = 0, column = 0, padx = 2, pady = 3)  
-        self.colon_label_one.grid(row = 0, column = 1, padx = 2, pady = 3)  
-        self.min_sec_label.grid(row = 0, column = 2, padx = 2, pady = 3)  
-        self.meridiem_label.grid(row = 0, column = 3, padx = 2, pady = 3)
-
+        
+        self.Time_label.place(x=0,y=28, width=170) 
+        self.meridiem_label.place(x=175,y=28)
+        self.day_label.place(x=5,y=80,width=310)  
+        self.Date_label.place(x=0,y=0)
         self.update_time()
         #===Left Menu===
         self.MenuLogo = Image.open("IMAGES/menu_im.png")
@@ -107,7 +108,7 @@ class IMS:
         self.lbl_icon2 = Label(dash_card2, image = self.icon2,compound=CENTER, bg = "White")
         self.lbl_count2 = Label(dash_card2, text = "1494", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
         self.lbl_current = Label(dash_card2, text = "Current Stock (units)",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon2.place(x = 7, y = 2, height = 65, width = 243)
+        self.lbl_icon2.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count2.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_current.place(x = 7, y = 110, height = 25, width = 243)
 
@@ -118,7 +119,7 @@ class IMS:
         self.lbl_icon3 = Label(dash_card3, image = self.icon3, compound=CENTER,bg = "White")
         self.lbl_count3 = Label(dash_card3, text = "7", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
         self.lbl_zerostock = Label(dash_card3, text = "Zero Stock Products",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon3.place(x = 7, y = 3, height = 65, width = 243)
+        self.lbl_icon3.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count3.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_zerostock.place(x = 7, y = 110, height = 25, width = 243)
 
@@ -129,7 +130,7 @@ class IMS:
         self.lbl_icon4 = Label(dash_card4, image = self.icon4,compound=CENTER, bg = "White")
         self.lbl_count4 = Label(dash_card4, text = "102", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
         self.lbl_products = Label(dash_card4, text = "Products",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon4.place(x = 7, y = 5, height = 65, width = 243)
+        self.lbl_icon4.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count4.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_products.place(x = 7, y = 110, height = 25, width = 243)
 
@@ -141,7 +142,7 @@ class IMS:
         self.lbl_icon5 = Label(dash_card5, image = self.icon5,compound=CENTER, bg = "White")
         self.lbl_count5 = Label(dash_card5, text = "45,626.00", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
         self.lbl_value = Label(dash_card5, text = "Stock Current Value(₹)",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon5.place(x = 7, y = 5, height = 65, width = 243)
+        self.lbl_icon5.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count5.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_value.place(x = 7, y = 110, height = 25, width = 243)
 
@@ -152,7 +153,7 @@ class IMS:
         self.lbl_icon6 = Label(dash_card6, image = self.icon6, compound=CENTER,bg = "White")
         self.lbl_count6 = Label(dash_card6, text = "15", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
         self.lbl_employee = Label(dash_card6, text = "Employees",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon6.place(x = 7, y = 5, height = 65, width = 243)
+        self.lbl_icon6.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count6.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_employee.place(x = 7, y = 110, height = 25, width = 243)
 
@@ -163,7 +164,7 @@ class IMS:
         self.lbl_icon7 = Label(dash_card7, image = self.icon7, compound=CENTER, bg = "White")
         self.lbl_count7 = Label(dash_card7, text = "27", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
         self.lbl_supplier = Label(dash_card7, text = "Suppliers",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon7.place(x = 7, y = 2, height = 65, width = 243)
+        self.lbl_icon7.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count7.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_supplier.place(x = 7, y = 110, height = 25, width = 243)
 
@@ -173,7 +174,7 @@ class IMS:
         self.lbl_icon8 = Label(dash_card8, image = "", compound=CENTER, bg = "White")
         self.lbl_count8 = Label(dash_card8, text = "45,626", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
         self.lbl_sales = Label(dash_card8, text = "Total Sales",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon8.place(x = 7, y = 5, height = 70, width = 243)
+        self.lbl_icon8.place(x = 7, y = 10, height = 70, width = 243)
         self.lbl_count8.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_sales.place(x = 7, y = 110, height = 25, width = 243)
         #====footer====
@@ -204,29 +205,23 @@ class IMS:
     def update_time(self):  
         # using the strftime() method to represent current time in string  
         hour = str(time.strftime("%H"))  
-        min_sec = str(time.strftime("%M : %S"))   
-  
+        Time = str(time.strftime("%I : %M : %S"))   
+        Date = str(time.strftime("%d-%m-%Y"))
+        Day = str(time.strftime("%A"))
         # if the hour range between 12 to 24 and minute is greater  
         # than or equal to 0 then set the value of the meridiem_label label to PM  
         if int(hour) >= 12 and int(hour) < 24 and int (str(time.strftime("%M"))) >= 0:  
-            self.meridiem_label= "PM"  
+            self.meridiem_label = "PM"  
         # else set the value of the meridiem_label to AM  
         else:  
             self.meridiem_label = "AM"  
   
-        # converting 24-hour time to 12-hour time by  
-        # subtracting 12 from hours ranging from 13 to 24  
-        if int(hour) > 12:  
-            hour = str((int(hour) - 12))  
-        # if the hour is equal to 0, setting the hour to 12  
-        elif int(hour) == 0:  
-            hour = str(12)  
-  
-        # configuring the text of the hour, minute, and second labels  
-        self.hour_label.config(text = hour)  
-        self.min_sec_label.config(text = f" {str(min_sec)} ")
+        # configuring the text of the date,hour, minute, and second labels   
+        self.Time_label.config(text = f" {str(Time)} ")
+        self.Date_label.config(text = f" {str(Date)} ")
+        self.day_label.config(text = f" {str(Day)} ")
         # using the after() to call the display_time() after 200 milliseconds  
-        self.hour_label.after(200, self.update_time)  
+        self.Time_label.after(200, self.update_time)  
     
   
 # main function

@@ -4,8 +4,8 @@ import os
 class demo:
     def __init__(self, root):
         self.root = root
-        frameCnt = 25
-        frames = [PhotoImage(file='S:/Photos/PNG/working on.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
+        frameCnt = 50
+        frames = [PhotoImage(file='IMAGES/icons/loader300.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
 
         def update(ind):
 
@@ -14,7 +14,7 @@ class demo:
             if ind == frameCnt:
                 ind = 0
             label.configure(image=frame)
-            self.root.after(120, update, ind)
+            self.root.after(40, update, ind)
         label = Label(root)
         label.pack()
         self.root.after(0, update, 0)
