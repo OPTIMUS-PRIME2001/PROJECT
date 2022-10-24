@@ -22,13 +22,13 @@ class IMS:
         btn_logout = Button(self.root, text = "Log Out", font = ("times new roman", 15, "bold"), bg = "#6A67CE", fg="White", cursor = "hand2").place(x = 1150, y = 10, height = 50, width = 150)
 
         #=====Welcome=====
-        self.welcomebg = ImageTk.PhotoImage(Image.open("IMAGES/bgcolor.png").resize((800, 150), Image.ANTIALIAS))
+        self.welcomebg = ImageTk.PhotoImage(Image.open("IMAGES/bgcolor1.png").resize((790, 200), Image.ANTIALIAS))
         self.welcomepic = ImageTk.PhotoImage(Image.open("IMAGES/welcome2.png").resize((245, 245), Image.ANTIALIAS))
         lbl_welc = Frame(self.root,bd=3,relief=FLAT,bg = "#f1f6f9")
-        lbl_welc.place(x = 230, y = 70, width = 800, height = 200)
+        lbl_welc.place(x = 229, y = 70, width = 800, height = 200)
 
         self_bg = Label(lbl_welc, image=self.welcomebg, font = ("times new roman", 15), bg = "#f1f6f9", fg = "white")
-        self_bg.place(x = 0, y = 40, width = 800, height = 150)
+        self_bg.place(x = 0, y = 0, width = 800, height = 200)
         #self.welpic = Label(lbl_welc, image = self.welcomepic,bg='grey',compound=CENTER)
         #self.welpic.place(x = 570, y = 0, height = 200, width = 200)
         self.canvas = Canvas(lbl_welc, width=200, height=180, bd=2, highlightthickness=2)
