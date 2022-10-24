@@ -84,7 +84,7 @@ class salesClass:
             messagebox.showerror("Error", "Invoice No. should be required", parent=self.root)
         else:
             if self.var_invoice.get() in self.bill_list:
-                fp=open(f'bill/{self.var_invoice.get()}.txt','r')
+                fp=open(f'bill/bill_{self.var_invoice.get()}.txt','r')
                 self.bill_area.delete('1.0', END)
                 for i in fp:
                     self.bill_area.insert(END,i)
