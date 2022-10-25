@@ -13,5 +13,8 @@ def create_DB():
 
     cur.execute("CREATE TABLE IF NOT EXISTS PRODUCTS(P_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,Pname TEXT NOT NULL, cid INTEGER NOT NULL, supplier TEXT, price REAL, Qty INTEGER, Status TEXT, icon BLOB)")
     con.commit()
+
+    cur.execute("CREATE TABLE Bills( Bill_ID	INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, Invoice INTEGER NOT NULL UNIQUE, Date TEXT NOT NULL, Net_pay	REAL NOT NULL, src BLOB)")
+    con.commit()    
     
 create_DB()

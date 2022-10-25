@@ -348,11 +348,9 @@ class BillClass:
             fp = open(f'bill/bill_{str(self.invoice)}.txt','w')
             fp.write(self.txt_bill_area.get('1.0',END))
             fp.close()
-            self.Date.set(str(time.strftime("%d%m%Y - %H:%M")))
-            cur.execute("Insert into Bills(Bill_ID,Invoice,Date,Net_pay) values(?,?,?,?)",(
-                                self.bill_id.get(),
+            cur.execute("Insert into Bills(Invoice,Date,Net_pay) values(?,?,?)",(
                                 self.invoice,
-                                self.Date.get(),
+                                str(time.strftime("%d%m%Y - %H:%M")),
                                 self.net_pay
                     ))
             con.commit()

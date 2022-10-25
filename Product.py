@@ -187,7 +187,6 @@ class ProductClass:
             cur.execute("select * from PRODUCTS")
             rows=cur.fetchall()
             self.ProductTable.delete(*self.ProductTable.get_children())
-            print(rows)
             for row in rows:
                 row = list(row)
                 row[2] = self.category_decode(row)
