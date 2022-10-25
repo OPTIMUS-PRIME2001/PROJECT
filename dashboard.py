@@ -87,30 +87,30 @@ class IMS:
         dash_card1.place(x = 230, y = r1y, height = 150, width = 260)
         Label(dash_card1,image=self.btn_bg).pack(fill=BOTH)
         self.lbl_icon1 = Label(dash_card1, image = self.icon1, compound=CENTER, bg = "white", fg="#01b1a5")
-        self.lbl_count1 = Label(dash_card1, text = "9", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
+        self.lbl_count1 = Label(dash_card1, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
         self.lbl_reorder = Label(dash_card1, text = "Products to Reorder",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
         self.lbl_icon1.place(x = 7, y = 10, height = 70, width = 243)
         self.lbl_count1.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_reorder.place(x = 7, y = 110, height = 25, width = 243)
 
         
-        self.icon2 = ImageTk.PhotoImage(Image.open("IMAGES/icons/card2_currentstock.png").resize((55, 55), Image.ANTIALIAS))
+        self.icon2 = ImageTk.PhotoImage(Image.open("IMAGES/icons/card2_currentstock.png").resize((50, 50), Image.ANTIALIAS))
         dash_card2=Frame(self.root,bd=0, relief=FLAT,bg = "#f1f6f9")
         dash_card2.place(x = 500, y = r1y, height = 150, width = 260)
         Label(dash_card2,image=self.btn_bg).pack(fill=BOTH)
         self.lbl_icon2 = Label(dash_card2, image = self.icon2,compound=CENTER, bg = "White")
-        self.lbl_count2 = Label(dash_card2, text = "1494", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
+        self.lbl_count2 = Label(dash_card2, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
         self.lbl_current = Label(dash_card2, text = "Current Stock (units)",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon2.place(x = 7, y = 10, height = 65, width = 243)
+        self.lbl_icon2.place(x = 7, y = 5, height = 65, width = 243)
         self.lbl_count2.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_current.place(x = 7, y = 110, height = 25, width = 243)
 
-        self.icon3 = ImageTk.PhotoImage(Image.open("IMAGES/icons/card3_zerostock.png").resize((60, 60), Image.ANTIALIAS))
+        self.icon3 = ImageTk.PhotoImage(Image.open("IMAGES/icons/card3_zerostock.png").resize((55, 55), Image.ANTIALIAS))
         dash_card3=Frame(self.root, bd=0, relief=FLAT, bg = "#f1f6f9")
         dash_card3.place(x = 770, y = r1y, height = 150, width = 260)
         Label(dash_card3,image=self.btn_bg).pack(fill=BOTH)
         self.lbl_icon3 = Label(dash_card3, image = self.icon3, compound=CENTER,bg = "White")
-        self.lbl_count3 = Label(dash_card3, text = "7", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
+        self.lbl_count3 = Label(dash_card3, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
         self.lbl_zerostock = Label(dash_card3, text = "Zero Stock Products",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
         self.lbl_icon3.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count3.place(x = 7, y = 65, height = 35, width = 243)
@@ -121,7 +121,7 @@ class IMS:
         dash_card4.place(x = 1040, y = r1y, height = 150, width = 260)
         Label(dash_card4,image=self.btn_bg).pack(fill=BOTH)
         self.lbl_icon4 = Label(dash_card4, image = self.icon4,compound=CENTER, bg = "White")
-        self.lbl_count4 = Label(dash_card4, text = "102", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
+        self.lbl_count4 = Label(dash_card4, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
         self.lbl_products = Label(dash_card4, text = "Products",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
         self.lbl_icon4.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count4.place(x = 7, y = 65, height = 35, width = 243)
@@ -133,7 +133,7 @@ class IMS:
         dash_card5.place(x = 230, y = r2y, height = 150, width = 260)
         Label(dash_card5,image=self.btn_bg).pack(fill=BOTH)
         self.lbl_icon5 = Label(dash_card5, image = self.icon5,compound=CENTER, bg = "White")
-        self.lbl_count5 = Label(dash_card5, text = "45,626.00", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
+        self.lbl_count5 = Label(dash_card5, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
         self.lbl_value = Label(dash_card5, text = "Stock Current Value(₹)",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
         self.lbl_icon5.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count5.place(x = 7, y = 65, height = 35, width = 243)
@@ -144,35 +144,37 @@ class IMS:
         dash_card6.place(x = 500, y = r2y, height = 150, width = 260)
         Label(dash_card6,image=self.btn_bg).pack(fill=BOTH)
         self.lbl_icon6 = Label(dash_card6, image = self.icon6, compound=CENTER,bg = "White")
-        self.lbl_count6 = Label(dash_card6, text = "15", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
+        self.lbl_count6 = Label(dash_card6, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
         self.lbl_employee = Label(dash_card6, text = "Employees",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
         self.lbl_icon6.place(x = 7, y = 10, height = 65, width = 243)
         self.lbl_count6.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_employee.place(x = 7, y = 110, height = 25, width = 243)
 
-        self.icon7 = ImageTk.PhotoImage(Image.open("IMAGES/icons/card7_supplier.png").resize((60, 60), Image.ANTIALIAS))
+        self.icon7 = ImageTk.PhotoImage(Image.open("IMAGES/icons/card7_supplier.png").resize((55, 55), Image.ANTIALIAS))
         dash_card7=Frame(self.root,bd=0, relief=FLAT,bg = "#f1f6f9")
         dash_card7.place(x = 770, y = r2y, height = 150, width = 260)
         Label(dash_card7,image=self.btn_bg).pack(fill=BOTH)
         self.lbl_icon7 = Label(dash_card7, image = self.icon7, compound=CENTER, bg = "White")
-        self.lbl_count7 = Label(dash_card7, text = "27", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
+        self.lbl_count7 = Label(dash_card7, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
         self.lbl_supplier = Label(dash_card7, text = "Suppliers",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon7.place(x = 7, y = 10, height = 65, width = 243)
+        self.lbl_icon7.place(x = 7, y = 5, height = 65, width = 243)
         self.lbl_count7.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_supplier.place(x = 7, y = 110, height = 25, width = 243)
 
+        self.icon8 = ImageTk.PhotoImage(Image.open("IMAGES/icons/card8_sales.png").resize((100, 60), Image.ANTIALIAS))
         dash_card8=Frame(self.root,bd=0, relief=FLAT,bg = "#f1f6f9")
         dash_card8.place(x = 1040, y = r2y, height = 150, width = 260)
         Label(dash_card8,image=self.btn_bg).pack(fill=BOTH)
-        self.lbl_icon8 = Label(dash_card8, image = "", compound=CENTER, bg = "White")
-        self.lbl_count8 = Label(dash_card8, text = "45,626", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 32, "bold"))
-        self.lbl_sales = Label(dash_card8, text = "Total Sales",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
-        self.lbl_icon8.place(x = 7, y = 10, height = 70, width = 243)
+        self.lbl_icon8 = Label(dash_card8, image = self.icon8, compound=CENTER, bg = "White")
+        self.lbl_count8 = Label(dash_card8, text = "0", bg = "White", compound=CENTER,fg = "black", font = ("Roboto", 30, "bold"))
+        self.lbl_sales = Label(dash_card8, text = "Total Sales (₹)",compound=CENTER, bg = "White", fg = "#01b1a5", font = ("Roboto", 15, "bold"))
+        self.lbl_icon8.place(x = 7, y = 5, height = 70, width = 243)
         self.lbl_count8.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_sales.place(x = 7, y = 110, height = 25, width = 243)
         #====footer====
         lbl_footer = Label(self.root, text = "IMS-Inventory Management System | Developed by ---\nFor any Technical Issues contact: -------", font = ("times new roman", 12), bg = "#6A67CE", fg = "white").pack(side = BOTTOM, fill = X)
     
+        self.update_content()
     #==============================================================================================================================
     
     def employee(self):
@@ -216,6 +218,45 @@ class IMS:
         # using the after() to call the display_time() after 200 milliseconds  
         self.Time_label.after(200, self.update_time)  
     
+    def update_content(self):
+        con = sqlite3.connect(database = r'InventoryData.db')
+        cur = con.cursor()
+        try:
+            cur.execute("SELECT * FROM PRODUCTS")
+            product=cur.fetchall()
+            reorder = 0
+            cur_stock = 0
+            zero_stock = 0
+            stock_value = 0.0
+            for p in product:
+                cur_stock += int(p[5])
+                if int(p[5]) == 0:
+                    zero_stock += 1
+                if int(p[5]) < 5:
+                    reorder += 1
+                stock_value = stock_value + float(p[4])*int(p[5])
+            self.lbl_count1.config(text=f'{str(reorder)}')
+            self.lbl_count2.config(text=f'{str(cur_stock)}')
+            self.lbl_count3.config(text=f'{str(zero_stock)}')
+            self.lbl_count4.config(text=f'{str(len(product))}')
+            self.lbl_count5.config(text=f'{str(stock_value)}')
+
+            cur.execute("SELECT * FROM employee")
+            employee=cur.fetchall()
+            self.lbl_count6.config(text=f'{str(len(employee))}')
+
+            cur.execute("SELECT * FROM supplier")
+            supplier=cur.fetchall()
+            self.lbl_count7.config(text=f'{str(len(supplier))}')
+
+            cur.execute("SELECT Net_Pay FROM Bills")
+            bills=cur.fetchall()
+            Sales_value = 0
+            for net in bills: Sales_value += net[0] 
+            self.lbl_count8.config(text=f'{str(Sales_value)}')
+        
+        except Exception as ex:
+            messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
   
 # main function
 if __name__=="__main__":

@@ -145,6 +145,8 @@ class BillClass:
                 
         #======Cart_Buttons=======
         #======variables=======
+        self.Date = StringVar()
+        self.bill_id = StringVar()
         self.var_pid = StringVar()
         self.var_pname = StringVar()
         self.var_price = StringVar()
@@ -335,16 +337,25 @@ class BillClass:
         elif len(self.cart_list)==0:
             messagebox.showerror("Error",f"Please Add Products to cart",parent=self.root)
         else:
+            con = sqlite3.connect(database = r'InventoryData.db')
+            cur = con.cursor()
             #====BIL Top=====
             self.bill_top()
             #====BIL Middle====
             self.bill_middle()
             #BIL Bottom====
             self.bill_bottom()
-
             fp = open(f'bill/bill_{str(self.invoice)}.txt','w')
             fp.write(self.txt_bill_area.get('1.0',END))
             fp.close()
+            self.Date.set(str(time.strftime("%d%m%Y - %H:%M")))
+            cur.execute("Insert into Bills(Bill_ID,Invoice,Date,Net_pay) values(?,?,?,?)",(
+                                self.bill_id.get(),
+                                self.invoice,
+                                self.Date.get(),
+                                self.net_pay
+                    ))
+            con.commit()
             messagebox.showinfo('Saved',"Bill has been generated / Saved in Backend",parent=self.root)
             self.check_print=1
 
@@ -375,11 +386,11 @@ class BillClass:
                 if int(row[3])==int(row[4]):
                     status='Inactive'
                 if int(row[3])!=int(row[4]):
-                    status='Inactive'
+                    status='Active'
                 price = str(float(row[2])*int(row[3]))
                 self.txt_bill_area.insert(END,"\n"+Name+"\t\t\t"+row[3]+"\tRs "+price)
                 #====Update qty in product table=======
-                cur.execute('Update product set qty=?, status=?, where pid=?',(
+                cur.execute('Update PRODUCTS set Qty=?, Status=? where P_id=?',(
                     qty,status,pid
                 ))
                 con.commit()

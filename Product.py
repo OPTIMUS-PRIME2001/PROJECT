@@ -71,7 +71,7 @@ class ProductClass:
         btn_clear=Button(product_Frame,text="Clear",command=self.clear,font=("Roboto",15,"bold"),bg="#607d8b",fg="white",cursor="hand2").place(x=240,y=410,width=100,height=40)
     
         #===Searchframe======
-        SearchFrame=LabelFrame(self.root,text="Search Employee",font=("goudy old style",12,"bold"),bd=2,relief=RIDGE,bg="white")
+        SearchFrame=LabelFrame(self.root,text="Search Product",font=("goudy old style",12,"bold"),bd=2,relief=RIDGE,bg="#f1f6f9")
         SearchFrame.place(x=420,y=10,width=660,height=80)
         
         #===Options=====
@@ -112,9 +112,9 @@ class ProductClass:
         self.ProductTable.column("Pname",width=150)
         self.ProductTable.column("Category",width=110)
         self.ProductTable.column("supplier",width=100)
-        self.ProductTable.column("price",width=100)
-        self.ProductTable.column("Qty",width=100)
-        self.ProductTable.column("Status",width=100)
+        self.ProductTable.column("price",width=60)
+        self.ProductTable.column("Qty",width=60)
+        self.ProductTable.column("Status",width=70)
         self.ProductTable.pack(fill=BOTH,expand=1)
         self.ProductTable.bind("<ButtonRelease-1>",self.get_data)
 
@@ -173,6 +173,13 @@ class ProductClass:
         else:
             return "Others"
     
+    def category_search(self,src):
+        con = sqlite3.connect(database = r'InventoryData.db')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM category WHERE name LIKE '%"+str(src)+"%'")
+        print(cur.fetchall())
+            
+    
     def show(self):
         con = sqlite3.connect(database = r'InventoryData.db')
         cur = con.cursor()
@@ -180,6 +187,7 @@ class ProductClass:
             cur.execute("select * from PRODUCTS")
             rows=cur.fetchall()
             self.ProductTable.delete(*self.ProductTable.get_children())
+            print(rows)
             for row in rows:
                 row = list(row)
                 row[2] = self.category_decode(row)
@@ -222,7 +230,7 @@ class ProductClass:
                 messagebox.showerror("Error","search input should be required",parent=self.root)
             else:   
                 if(self.var_searchby.get()=="category"):
-                    self.var_searchby.set(self.category_decode(cur))
+                    self.var_searchtxt.set(self.category_search(self.var_searchtxt))
                 cur.execute("SELECT * FROM PRODUCTS WHERE " + self.var_searchby.get() + " LIKE '%"+self.var_searchtxt.get()+"%'")
                 rows=cur.fetchall()
                 if len(rows)!=0:
