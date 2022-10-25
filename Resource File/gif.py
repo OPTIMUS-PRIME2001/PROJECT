@@ -1,6 +1,4 @@
-from tkinter import *
-import time
-import os
+from Library import*
 class demo:
     def __init__(self, root):
         self.root = root

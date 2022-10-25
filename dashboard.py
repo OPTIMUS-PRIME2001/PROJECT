@@ -1,11 +1,4 @@
-from tkinter import* # importing all the modules and widgets from tkinter  
-from PIL import Image, ImageTk
-import time             # importing the time module  
-from Category import categoryClass
-from Employee import employeeClass
-from Product import ProductClass
-from supplier import supplierClass
-from Sales import salesClass
+from Library import*
 
 class IMS:
     def __init__(self, root):

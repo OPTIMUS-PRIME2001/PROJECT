@@ -1,8 +1,5 @@
-from tkinter import*
-import tkinter
-from PIL import Image,ImageTk #pip install pillow
-from tkinter import ttk, messagebox
-import sqlite3
+from Library import*
+
 class ProductClass:
     def __init__(self,root):
         self.root=root

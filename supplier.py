@@ -1,7 +1,4 @@
-from tkinter import *
-from PIL import Image, ImageTk
-from tkinter import ttk, messagebox
-import sqlite3
+from Library import*
 
 class supplierClass:
     def __init__(self, root):

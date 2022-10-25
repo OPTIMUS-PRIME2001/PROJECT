@@ -1,8 +1,4 @@
-from tkinter import*
-from PIL import Image, ImageTk #pip install pillow
-from tkinter import ttk, messagebox
-import sqlite3
-import time
+from Library import*
 
 class BillClass:
     def __init__(self, root):
@@ -11,6 +7,7 @@ class BillClass:
         self.root.title("Inventory Management System | Developed by ...")
         self.root.config(bg = "#f1f6f9")
         self.cart_list = []
+        self.check_print = 0
         #=====title=====
         self.icon_title = PhotoImage(file = "IMAGES/logo1.png")
         title = Label(self.root, text = "Inventory Management System", image = self.icon_title, compound = LEFT, font = ("times new roman", 40, "bold"), bg = "#8843F2", fg = "white", anchor = "w", padx = 20).place(x = 0, y = 0, relwidth = 1, height = 70)
@@ -349,6 +346,7 @@ class BillClass:
             fp.write(self.txt_bill_area.get('1.0',END))
             fp.close()
             messagebox.showinfo('Saved',"Bill has been generated / Saved in Backend",parent=self.root)
+            self.check_print=1
 
     def bill_top(self):
         self.invoice=int(time.strftime("%H%M%S")) + int(time.strftime("%d%m%Y"))
@@ -418,10 +416,19 @@ class BillClass:
         self.txt_bill_area.delete('1.0',END)
         self.cartTitle.config(text=f"Cart \tTotal Product: [0]")
         self.var_search.set('')
+        self.check_print=0
         self.clear_cart()
         self.show()
         self.show_cart()
-
+    
+    def print_bill(self):
+        if self.chk_print==1:
+            messagebox.showinfo('Print',"Please wait while printing",parent=self.root)
+            new_file=tempfile.mktemp('.txt')
+            open(new_file,'w').write(self.txt_bill_area.get('1.0',END))
+            os.startfile(new_file,'print')
+        else:
+            messagebox.showerror('Print',"Please geberate bill, to print the receipt",parent=self.root)
 
 
 if __name__=="__main__":
