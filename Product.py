@@ -75,7 +75,7 @@ class ProductClass:
         SearchFrame.place(x=420,y=10,width=660,height=80)
         
         #===Options=====
-        cmb_search=ttk.Combobox(SearchFrame,textvariable=self.var_searchby,values=("Select","category","supplier","Pname"),state='readonly',justify=CENTER,font=("goudy old style",15))
+        cmb_search=ttk.Combobox(SearchFrame,textvariable=self.var_searchby,values=("Select","Category","Supplier","Pname"),state='readonly',justify=CENTER,font=("goudy old style",15))
         cmb_search.place(x=10,y=10,width=180)
         cmb_search.current(0)
 
@@ -228,7 +228,8 @@ class ProductClass:
             elif self.var_searchtxt.get()=="":
                 messagebox.showerror("Error","search input should be required",parent=self.root)
             else:   
-                if(self.var_searchby.get()=="category"):
+                if(self.var_searchby.get()=="Category"):
+                    self.var_searchby.set('cid')
                     self.var_searchtxt.set(self.category_search(self.var_searchtxt))
                 cur.execute("SELECT * FROM PRODUCTS WHERE " + self.var_searchby.get() + " LIKE '%"+self.var_searchtxt.get()+"%'")
                 rows=cur.fetchall()

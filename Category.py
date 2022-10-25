@@ -89,8 +89,8 @@ class categoryClass:
       #  self.cT.lbl_InternalComponent.place(x = 430, y = Row2h , height = 150, width = 130)
        self.lbl_InternalComponent.pack(side = "left", padx = 10)
 
-       self.icon_Per = Image.open("IMAGES/icons/Monitors_icon.png")
-       self.icon_Per = self.icon_Per.resize((130, 130), Image.ANTIALIAS)
+       self.icon_Per = Image.open("IMAGES/icons/Peripherals_icon.png")
+       self.icon_Per = self.icon_Per.resize((120, 120), Image.ANTIALIAS)
        self.icon_Per = ImageTk.PhotoImage(self.icon_Per)
        self.lbl_Peripherals = Button(cardFrame2, image = self.icon_Per, relief="groove", bd = 5,  bg="white", height = 150, width = 130)
       #  self.cT.lbl_Peripherals.place(x = 570, y = Row2h , height = 150, width = 130)
