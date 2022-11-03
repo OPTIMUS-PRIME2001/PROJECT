@@ -6,6 +6,8 @@ import time             # importing the time module
 import os
 import tempfile
 import sqlite3
+#import email_password
+import smtplib
 from Category import categoryClass
 from Employee import employeeClass
 from Product import ProductClass

@@ -12,7 +12,7 @@ class IMS:
         title = Label(self.root, text = "Inventory Management System", image = self.icon_title, compound = LEFT, font = ("times new roman", 40, "bold"), bg = "#8843F2", fg = "white", anchor = "w", padx = 20).place(x = 0, y = 0, relwidth = 1, height = 70)
 
         #===btn_logout===
-        btn_logout = Button(self.root, text = "Log Out", font = ("times new roman", 15, "bold"), bg = "#6A67CE", fg="White", cursor = "hand2").place(x = 1150, y = 10, height = 50, width = 150)
+        btn_logout = Button(self.root, text = "Log Out",command=self.logout, font = ("times new roman", 15, "bold"), bg = "#6A67CE", fg="White", cursor = "hand2").place(x = 1150, y = 10, height = 50, width = 150)
 
         #=====Welcome=====
         self.welcomebg = ImageTk.PhotoImage(Image.open("IMAGES/bgcolor1.png").resize((790, 200), Image.ANTIALIAS))
@@ -77,7 +77,7 @@ class IMS:
         btn_category = Button(LeftMenu, text = "Category", command = self.category, image = self.category_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
         btn_product = Button(LeftMenu, text = "Product", command = self.product, image = self.product_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
         btn_sales = Button(LeftMenu, text = "Sales", command = self.sales, image = self.sales_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
-        btn_exit = Button(LeftMenu, text = "Exit", image = self.exit_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
+        btn_exit = Button(LeftMenu, text = "Exit", command = self.root.destroy, image = self.exit_icon, compound = LEFT, padx = 5, anchor = "w", font = ("times new roman", 20, "bold"), bg = "white", bd = 3, cursor = "hand2").pack(side = TOP, fill = X)
 
         #====content====
         self.btn_bg = ImageTk.PhotoImage(Image.open("IMAGES/button_bg.png").resize((265, 150), Image.ANTIALIAS))
@@ -257,6 +257,10 @@ class IMS:
         
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
+
+    def logout(self):
+        self.root.destroy()
+        os.system("python LoginPage.py")
   
 # main function
 if __name__=="__main__":

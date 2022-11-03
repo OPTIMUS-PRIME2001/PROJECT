@@ -1,25 +1,24 @@
-from tkinter import *
-from PIL import ImageTk, Image
+from Library import*
 
 
 class LoginPage:
-    def __init__(self, window):
-        self.window = window
-        self.window.geometry('1166x718')
-        self.window.resizable(0, 0)
-        self.window.state('zoomed')
-        self.window.title('Login Page')
+    def __init__(self, root):
+        self.root = root
+        self.root.geometry('1166x718')
+        self.root.resizable(0, 0)
+        self.root.state('zoomed')
+        self.root.title('Login Page')
 
         # ========================================================================
         # ============================background image============================
         # ========================================================================
         self.bg_frame = Image.open('IMAGES/background1.png')
         photo = ImageTk.PhotoImage(self.bg_frame)
-        self.bg_panel = Label(self.window, image=photo)
+        self.bg_panel = Label(self.root, image=photo)
         self.bg_panel.image = photo
         self.bg_panel.pack(fill='both', expand='yes')
         # ====== Login Frame =========================
-        self.lgn_frame = Frame(self.window, bg='#040405', width=950, height=600)
+        self.lgn_frame = Frame(self.root, bg='#040405', width=950, height=600)
         self.lgn_frame.place(x=200, y=70)
 
         # ========================================================================
@@ -60,11 +59,14 @@ class LoginPage:
         # ========================================================================
         # ============================username====================================
         # ========================================================================
+        self.var_ussername = StringVar()
+        self.var_password = StringVar()
+
         self.username_label = Label(self.lgn_frame, text="Username", bg="#040405", fg="#4f4e4d",
                                     font=("yu gothic ui", 13, "bold"))
         self.username_label.place(x=550, y=300)
 
-        self.username_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg="#6b6a69",
+        self.username_entry = Entry(self.lgn_frame,textvariable=self.var_ussername, highlightthickness=0, relief=FLAT, bg="#040405", fg="white",
                                     font=("yu gothic ui ", 12, "bold"))
         self.username_entry.place(x=580, y=335, width=270)
 
@@ -85,7 +87,7 @@ class LoginPage:
         self.lgn_button_label = Label(self.lgn_frame, image=photo, bg='#040405')
         self.lgn_button_label.image = photo
         self.lgn_button_label.place(x=550, y=450)
-        self.login = Button(self.lgn_button_label, text='LOGIN', font=("yu gothic ui", 13, "bold"), width=25, bd=0,
+        self.login = Button(self.lgn_button_label, command=self.login,text='LOGIN', font=("yu gothic ui", 13, "bold"), width=25, bd=0,
                             bg='#3047ff', cursor='hand2', activebackground='#3047ff', fg='white')
         self.login.place(x=20, y=10)
         # ========================================================================
@@ -93,8 +95,7 @@ class LoginPage:
         # ========================================================================
         self.forgot_button = Button(self.lgn_frame, text="Forgot Password ?",
                                     font=("yu gothic ui", 13, "bold underline"), fg="white", relief=FLAT,
-                                    activebackground="#040405"
-                                    , borderwidth=0, background="#040405", cursor="hand2")
+                                    activebackground="#040405" , borderwidth=0, background="#040405", cursor="hand2")
         self.forgot_button.place(x=630, y=510)
         # =========== Sign Up ==================================================
         self.sign_label = Label(self.lgn_frame, text='No account yet?', font=("yu gothic ui", 11, "bold"),
@@ -113,7 +114,7 @@ class LoginPage:
                                     font=("yu gothic ui", 13, "bold"))
         self.password_label.place(x=550, y=380)
 
-        self.password_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg="#6b6a69",
+        self.password_entry = Entry(self.lgn_frame, textvariable=self.var_password,highlightthickness=0, relief=FLAT, bg="#040405", fg="#6b6a69",
                                     font=("yu gothic ui", 12, "bold"), show="*")
         self.password_entry.place(x=580, y=416, width=244)
 
@@ -133,29 +134,68 @@ class LoginPage:
             (file='IMAGES/icons/hide.png')
 
         self.show_button = Button(self.lgn_frame, image=self.show_image, command=self.show, relief=FLAT,
-                                  activebackground="white"
-                                  , borderwidth=0, background="white", cursor="hand2")
+                                  activebackground="#040405"
+                                  , borderwidth=0, background="#040405", cursor="hand2")
         self.show_button.place(x=860, y=420)
 
     def show(self):
         self.hide_button = Button(self.lgn_frame, image=self.hide_image, command=self.hide, relief=FLAT,
-                                  activebackground="white"
-                                  , borderwidth=0, background="white", cursor="hand2")
+                                  activebackground="#040405"
+                                  , borderwidth=0, background="#040405", cursor="hand2")
         self.hide_button.place(x=860, y=420)
         self.password_entry.config(show='')
 
     def hide(self):
         self.show_button = Button(self.lgn_frame, image=self.show_image, command=self.show, relief=FLAT,
-                                  activebackground="white"
-                                  , borderwidth=0, background="white", cursor="hand2")
+                                  activebackground="#040405"
+                                  , borderwidth=0, background="#040405", cursor="hand2")
         self.show_button.place(x=860, y=420)
         self.password_entry.config(show='*')
 
+    def login(self):
+        con=sqlite3.connect(database='InventoryData.db') 
+        cur=con.cursor() 
+        try:
+            if self.var_ussername.get()=="" or self.var_password.get()=="": 
+                messagebox.showerror("Error","All fileds are required",parent=self.root)
+            else:
+                cur.execute("select uType from employee where eid=? AND pass=?",(self.var_ussername.get(),self.var_password.get()))
+                user=cur.fetchone( ) 
+                if user==None:
+                    messagebox.showerror("Error","Invalid user name/password",parent=self.root)
+                else:
+                    if user[0]=="Admin":
+                        self.root.destroy( ) 
+                        os.system("python dashboard.py") 
+                    else:
+                        self.root.destroy() 
+                        os.system("python billing.py")
+        except Exception as ex:
+            messagebox.showerror("error",f"error due to : {str(ex)}",parent=self.root)
+
+    def forget_windo(self):
+        con=sqlite3.connect(database='InventoryData.db' ) 
+        cur=con.cursor() 
+        try: 
+            if self.var_ussername.get()=="":
+                messagebox.showerror("Error","Employee ID must be required",parent=self.root)
+            else:
+                cur.execute("select email from employee where eid=?",(self.var_ussername.get(),))
+                email=cur.fetchone( ) 
+                if email==None:
+                    messagebox.showerror("Error","Invalid Employee ID,try again",parent=self.root)
+                else:
+                    # ===== forget windo===== # 
+                    # call_send_email_function()
+                    print('')
+        except Exception as ex:
+            messagebox.showerror("error",f"error due to : {str(ex)}",parent=self.root)
+
 
 def page():
-    window = Tk()
-    LoginPage(window)
-    window.mainloop()
+    root = Tk()
+    LoginPage(root)
+    root.mainloop()
 
 
 if __name__ == '__main__':
