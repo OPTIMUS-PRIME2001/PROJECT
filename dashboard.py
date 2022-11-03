@@ -6,6 +6,7 @@ class IMS:
         self.root.geometry("1350x700+0+0")
         self.root.title("Inventory Management System | Developed by ...")
         self.root.config(bg = "#f1f6f9")
+        self.root.iconbitmap('IMAGES/icons/computer.ico')
         
         #=====title=====
         self.icon_title = PhotoImage(file = "IMAGES/logo1.png")

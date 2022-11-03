@@ -6,6 +6,7 @@ class ProductClass:
         self.root.geometry("1100x500+220+130")
         self.root.title("Inventory Management System")
         self.root.config(bg="#f1f6f9") 
+        self.root.iconbitmap('IMAGES\icons\computer.ico')
         self.root.focus_force()
         
         #=======Parent Frame===============

@@ -6,6 +6,7 @@ class BillClass:
         self.root.geometry("1370x700+0+0")
         self.root.title("Inventory Management System | Developed by ...")
         self.root.config(bg = "#f1f6f9")
+        self.root.iconbitmap('IMAGES\icons\computer.ico')
         self.cart_list = []
         self.check_print = 0
         #=====title=====
@@ -13,7 +14,7 @@ class BillClass:
         title = Label(self.root, text = "Inventory Management System", image = self.icon_title, compound = LEFT, font = ("times new roman", 40, "bold"), bg = "#8843F2", fg = "white", anchor = "w", padx = 20).place(x = 0, y = 0, relwidth = 1, height = 70)
 
         #===btn_logout===
-        btn_logout = Button(self.root, text = "Log Out", font = ("times new roman", 15, "bold"), bg = "#6A67CE", fg="White", cursor = "hand2").place(x = 1150, y = 10, height = 50, width = 150)
+        btn_logout = Button(self.root, text = "Log Out", command=self.logout, font = ("times new roman", 15, "bold"), bg = "#6A67CE", fg="White", cursor = "hand2").place(x = 1150, y = 10, height = 50, width = 150)
 
     #=======Product_Frame==========
         #===Variable===
@@ -439,6 +440,9 @@ class BillClass:
         else:
             messagebox.showerror('Print',"Please geberate bill, to print the receipt",parent=self.root)
 
+    def logout(self):
+        self.root.destroy()
+        os.system("python LoginPage.py")
 
 if __name__=="__main__":
     root = Tk()

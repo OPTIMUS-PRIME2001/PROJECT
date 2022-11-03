@@ -7,6 +7,7 @@ class LoginPage:
         self.root.geometry('1166x718')
         self.root.resizable(0, 0)
         self.root.state('zoomed')
+        self.root.iconbitmap('IMAGES/icons/Key.ico')
         self.root.title('Login Page')
 
         # ========================================================================
@@ -93,7 +94,7 @@ class LoginPage:
         # ========================================================================
         # ============================Forgot password=============================
         # ========================================================================
-        self.forgot_button = Button(self.lgn_frame, text="Forgot Password ?",
+        self.forgot_button = Button(self.lgn_frame, text="Forgot Password ?", command = self.forget_window,
                                     font=("yu gothic ui", 13, "bold underline"), fg="white", relief=FLAT,
                                     activebackground="#040405" , borderwidth=0, background="#040405", cursor="hand2")
         self.forgot_button.place(x=630, y=510)
@@ -173,7 +174,7 @@ class LoginPage:
         except Exception as ex:
             messagebox.showerror("error",f"error due to : {str(ex)}",parent=self.root)
 
-    def forget_windo(self):
+    def forget_window(self):
         con=sqlite3.connect(database='InventoryData.db' ) 
         cur=con.cursor() 
         try: 
@@ -185,9 +186,32 @@ class LoginPage:
                 if email==None:
                     messagebox.showerror("Error","Invalid Employee ID,try again",parent=self.root)
                 else:
-                    # ===== forget windo===== # 
+                    # ===== forget window===== # 
+                    self.var_otp = StringVar()
+                    self.var_new_pass=StringVar()
+                    self.var_conf_pass = StringVar()
                     # call_send_email_function()
-                    print('')
+                    self.forget_win=Toplevel(self.root) 
+                    self.forget_win.title('RESET PASSWORD') 
+                    self.forget_win.geometry('400x350+500+100' ) 
+                    self.forget_win.focus_force()
+
+                    title=Label(self.forget_win,text="Reset Password",font=("goudy old style",15,"bold"),bg="#3f51b5",fg="white").pack(side=TOP,fill=X)
+
+                    lbl_reset=Label(self.forget_win,text="Enter OTP sent on Registered Email",font=("Andalus",15)).place(x=20,y=60)
+                    txt_reset=Entry(self.forget_win,textvariable=self.var_otp,font=("times new roman",15),bg="lightyellow").place(x=20,y=100,width=250,height=30)
+                    
+                    lbl_new_pass=Label(self.forget_win,text="Enter New Password ",font=("Andalus",15)).place(x=20,y=160)
+                    txt_new_pass=Entry(self.forget_win,textvariable=self.var_new_pass,font=("times new roman",15),bg="lightyellow").place(x=20,y=190,width=250,height=30)
+                    
+                    lbl_conf_pass=Label(self.forget_win,text="Enter Confirm Password",font=("Andalus",15)).place(x=20,y=225)
+                    txt_conf_pass=Entry(self.forget_win,textvariable=self.var_conf_pass,font=("times new roman",15),bg="lightyellow").place(x=20,y=255,width=250,height=30)
+                    
+                    self.btn_reset=Button(self.forget_win,text="SUBMIT", font=("times new roman",15,"bold"),bg="lightblue",fg="#00759E",cursor="hand2")
+                    self.btn_reset.place(x=280,y=100,width=100,height=30)
+                    self.btn_update=Button(self.forget_win,text="Update",state=DISABLED,font=("times new roman",15,"bold"),bg="lightblue",fg="#00759E",cursor="hand2")
+                    self.btn_update.place(x=150,y=300,width=100,height=30)
+                   
         except Exception as ex:
             messagebox.showerror("error",f"error due to : {str(ex)}",parent=self.root)
 
