@@ -21,6 +21,7 @@ class employeeClass:
         self.var_dob=StringVar()
         self.var_doj=StringVar()
         self.var_email=StringVar()
+        self.var_uname=StringVar()
         self.var_pass=StringVar()
         self.var_utype=StringVar()
         self.var_address=StringVar()
@@ -102,7 +103,7 @@ class employeeClass:
         scrolly=Scrollbar(emp_frame,orient=VERTICAL)
         scrollx=Scrollbar(emp_frame,orient=HORIZONTAL)
 
-        self.EmployeeTable=ttk.Treeview(emp_frame,columns=("eid","name","email","gender","contact","dob","doj","pass","utype","address","salary"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
+        self.EmployeeTable=ttk.Treeview(emp_frame,columns=("eid","name","email","gender","contact","dob","doj","uname","pass","utype","address","salary"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
 
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -117,21 +118,23 @@ class employeeClass:
         self.EmployeeTable.heading("contact",text="Contact")
         self.EmployeeTable.heading("dob",text="D.O.B")
         self.EmployeeTable.heading("doj",text="D.O.J")
-        self.EmployeeTable.heading("pass",text="Password")
+        self.EmployeeTable.heading("uname",text="Username")
+        self.EmployeeTable.heading("pass",text="pass")
         self.EmployeeTable.heading("utype",text="User Type")
         self.EmployeeTable.heading("address",text="Address")
         self.EmployeeTable.heading("salary",text="Salary")
 
         self.EmployeeTable["show"]="headings"
 
-        self.EmployeeTable.column("eid",width=90)
+        self.EmployeeTable.column("eid",width=70)
         self.EmployeeTable.column("name",width=100)
         self.EmployeeTable.column("email",width=100)
         self.EmployeeTable.column("gender",width=100)
         self.EmployeeTable.column("contact",width=100)
         self.EmployeeTable.column("dob",width=100)
         self.EmployeeTable.column("doj",width=100)
-        self.EmployeeTable.column("pass",width=100)
+        self.EmployeeTable.column("uname",width=100)
+        self.EmployeeTable.column("pass",width=0)
         self.EmployeeTable.column("utype",width=100)
         self.EmployeeTable.column("address",width=100)
         self.EmployeeTable.column("salary",width=100)
@@ -149,19 +152,22 @@ class employeeClass:
             if self.var_emp_id.get() == "" or self.var_name.get()=="":
                 messagebox.showerror("Error","Employee ID Must be required",parent=root)
             else:
+                x=self.var_name.get().lower().split()
+                self.var_uname.set(x[0]+"@"+self.var_dob.get())
                 cur.execute("Select * from employee where eid=?",(self.var_emp_id.get(),))
                 row=cur.fetchone()
                 if row!=None:
                     messagebox.showerror("Error","This Employee ID already assigned, try different",parent=self.root)
                 else:
-                    cur.execute("Insert into employee (eid,name,email,gender,contact,dob,doj,pass,utype,address,salary) values(?,?,?,?,?,?,?,?,?,?,?)",(
+                    cur.execute("Insert into employee (eid,name,email,gender,contact,dob,doj,uname,pass,utype,address,salary) values(?,?,?,?,?,?,?,?,?,?,?,?)",(
                                 self.var_emp_id.get(),
                                 self.var_name.get(),
                                 self.var_email.get(),
                                 self.var_gender.get(),
                                 self.var_contact.get(),
                                 self.var_dob.get(),
-                                self.var_doj.get(),                                
+                                self.var_doj.get(), 
+                                self.var_uname.get(),                               
                                 self.var_pass.get(),
                                 self.var_utype.get(),
                                 self.txt_address.get('1.0',END),
@@ -243,7 +249,6 @@ class employeeClass:
         f=self.EmployeeTable.focus()
         content=(self.EmployeeTable.item(f))
         row=content['values']
-        print(row)
         self.var_emp_id.set(row[0]),
         self.var_name.set(row[1]),
         self.var_email.set(row[2]),
@@ -251,11 +256,11 @@ class employeeClass:
         self.var_contact.set(row[4]),
         self.var_dob.set(row[5]),
         self.var_doj.set(row[6]),                                
-        self.var_pass.set(row[7]),
-        self.var_utype.set(row[8]),
+        self.var_pass.set(row[8]),
+        self.var_utype.set(row[9]),
         self.txt_address.delete('1.0',END),
-        self.txt_address.insert(END,row[9]),
-        self.var_salary.set(row[10])
+        self.txt_address.insert(END,row[10]),
+        self.var_salary.set(row[11])
 
     def clear(self):
         self.var_emp_id.set(""),

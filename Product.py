@@ -86,7 +86,7 @@ class ProductClass:
         #=======Product Details======
 
         p_frame=Frame(self.root,bd=3,relief=RIDGE)
-        p_frame.place(x=480,y=100,width=600,height=390)
+        p_frame.place(x=420,y=100,width=660,height=390)
 
         scrolly=Scrollbar(p_frame,orient=VERTICAL)
         scrollx=Scrollbar(p_frame,orient=HORIZONTAL)

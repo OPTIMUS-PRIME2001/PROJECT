@@ -1,7 +1,7 @@
 from Library import*
+var_UserName=""
 
-
-class LoginPage:
+class LoginPageclass:
     def __init__(self, root):
         self.root = root
         self.root.geometry('1166x718')
@@ -160,12 +160,15 @@ class LoginPage:
             if self.var_ussername.get()=="" or self.var_password.get()=="": 
                 messagebox.showerror("Error","All fileds are required",parent=self.root)
             else:
-                cur.execute("select uType from employee where eid=? AND pass=?",(self.var_ussername.get(),self.var_password.get()))
+                cur.execute("select name,uType from employee where uname=? AND pass=?",(self.var_ussername.get(),self.var_password.get()))
                 user=cur.fetchone( ) 
                 if user==None:
                     messagebox.showerror("Error","Invalid user name/password",parent=self.root)
                 else:
-                    if user[0]=="Admin":
+                    global var_UserName
+                    var_UserName = user[0]
+                    #list(cur.fetchall()[0])[1]
+                    if user[1]=="Admin":
                         self.root.destroy( ) 
                         os.system("python dashboard.py") 
                     else:
@@ -218,7 +221,7 @@ class LoginPage:
 
 def page():
     root = Tk()
-    LoginPage(root)
+    LoginPageclass(root)
     root.mainloop()
 
 

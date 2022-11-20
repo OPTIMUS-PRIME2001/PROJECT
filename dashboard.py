@@ -1,3 +1,4 @@
+import LoginPage
 from Library import*
 
 class IMS:
@@ -28,10 +29,10 @@ class IMS:
         self.canvas = Canvas(lbl_welc, width=200, height=180, bd=2, highlightthickness=2)
         self.image_id = self.canvas.create_image(50,50, image=self.welcomepic)
 
-        #self.canvas.create_rectangle(245,50,345,150, fill='grey')
-        self.note = Label(lbl_welc, text="Welcome Back PRIMUS!", font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
-        self.note.place(x = 5, y = 50, width = 560, height = 80 )
-
+        self.note1 = Label(lbl_welc, text="Welcome Back Username!\n We're glad You're here", compound=LEFT, font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
+        self.note1.place(x = 15, y = 55, width = 520, height = 100 )
+        #self.note2 = Label(lbl_welc, text="The fastest way to help your Customer", compound=LEFT, font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
+        #self.note2.place(x = 15, y = 55, width = 520, height = 100 )
         #====Clock=====
         self.btn_bg1 = ImageTk.PhotoImage(Image.open("IMAGES/button_bg.png").resize((265, 190), Image.ANTIALIAS))
         Label(self.root,image=self.btn_bg1).place(x = 1040, y = 80, width = 257, height = 185)
@@ -173,7 +174,7 @@ class IMS:
         self.lbl_count8.place(x = 7, y = 65, height = 35, width = 243)
         self.lbl_sales.place(x = 7, y = 110, height = 25, width = 243)
         #====footer====
-        lbl_footer = Label(self.root, text = "IMS-Inventory Management System | Developed by ---\nFor any Technical Issues contact: -------", font = ("times new roman", 12), bg = "#6A67CE", fg = "white").pack(side = BOTTOM, fill = X)
+        lbl_footer = Label(self.root, text = "Developed by Group 5 Members : Saptarshi Chatterjee, Saptarshi Majhi, Pratik Gayen, Somak Poddar, Priyanshu Sharma \nFor any Technical Issues contact: -------", font = ("times new roman", 12), bg = "#6A67CE", fg = "white").pack(side = BOTTOM, fill = X)
     
         self.update_content()
     #==============================================================================================================================
@@ -216,6 +217,7 @@ class IMS:
         self.Time_label.config(text = f" {str(Time)} ")
         self.Date_label.config(text = f" {str(Date)} ")
         self.day_label.config(text = f" {str(Day)} ")
+        self.note1.config(text = f"Welcome Back {LoginPage.var_UserName}!\n We're glad You're here")
         # using the after() to call the display_time() after 200 milliseconds  
         self.Time_label.after(200, self.update_time)  
     
