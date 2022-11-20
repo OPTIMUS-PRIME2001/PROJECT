@@ -208,7 +208,7 @@ class BillClass:
         btn_generate.place(x=246, y=80, width=160, height=50)
 
         # ===================Footer==================
-        footer = Label(self.root, text = "IMS-Inventory Management System | Developed by ---\nFor any Technical Issues contact: -------", font = ("times new roman", 8), bg = "#6A67CE", fg = "white").pack(side = BOTTOM, fill = X)
+        footer = Label(self.root, text = "Developed by Group 5 Members : Saptarshi Chatterjee, Saptarshi Majhi, Pratik Gayen, Somak Poddar, Priyanshu Sharma", font = ("times new roman", 14), bg = "#6A67CE", fg = "white").pack(side = BOTTOM, fill = X)
 
         self.show()
 # ==============================All functions==================
