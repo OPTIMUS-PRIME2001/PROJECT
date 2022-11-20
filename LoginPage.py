@@ -1,5 +1,4 @@
 from Library import*
-var_UserName=""
 
 class LoginPageclass:
     def __init__(self, root):
@@ -160,15 +159,18 @@ class LoginPageclass:
             if self.var_ussername.get()=="" or self.var_password.get()=="": 
                 messagebox.showerror("Error","All fileds are required",parent=self.root)
             else:
-                cur.execute("select name,uType from employee where uname=? AND pass=?",(self.var_ussername.get(),self.var_password.get()))
+                cur.execute("select name,uname,pass,uType from employee where uname=? AND pass=?",(self.var_ussername.get(),self.var_password.get()))
                 user=cur.fetchone( ) 
                 if user==None:
                     messagebox.showerror("Error","Invalid user name/password",parent=self.root)
                 else:
-                    global var_UserName
-                    var_UserName = user[0]
-                    #list(cur.fetchall()[0])[1]
-                    if user[1]=="Admin":
+                    con = sqlite3.connect(database = r'InventoryData.db')
+                    cur = con.cursor()
+                    cur.execute("Insert into LogBook (Name,uname,pass,utype,time) values(?,?,?,?,?)",(
+                                user[0], user[1], user[2], user[3], str(time.strftime("%d-%m-%Y - %I:%M:%S"))
+                    ))
+                    con.commit()
+                    if user[3]=="Admin":
                         self.root.destroy( ) 
                         os.system("python dashboard.py") 
                     else:

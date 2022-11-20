@@ -1,4 +1,3 @@
-import LoginPage
 from Library import*
 
 class IMS:
@@ -29,7 +28,7 @@ class IMS:
         self.canvas = Canvas(lbl_welc, width=200, height=180, bd=2, highlightthickness=2)
         self.image_id = self.canvas.create_image(50,50, image=self.welcomepic)
 
-        self.note1 = Label(lbl_welc, text="Welcome Back Username!\n We're glad You're here", compound=LEFT, font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
+        self.note1 = Label(lbl_welc, text="Welcome Back Username!\n We're glad You're here", compound=LEFT, font = ("Roboto", 20, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
         self.note1.place(x = 15, y = 55, width = 520, height = 100 )
         #self.note2 = Label(lbl_welc, text="The fastest way to help your Customer", compound=LEFT, font = ("Roboto", 25, "bold"), bg = "#c9ceef" , fg = "#6F38C5")
         #self.note2.place(x = 15, y = 55, width = 520, height = 100 )
@@ -217,7 +216,7 @@ class IMS:
         self.Time_label.config(text = f" {str(Time)} ")
         self.Date_label.config(text = f" {str(Date)} ")
         self.day_label.config(text = f" {str(Day)} ")
-        self.note1.config(text = f"Welcome Back {LoginPage.var_UserName}!\n We're glad You're here")
+        
         # using the after() to call the display_time() after 200 milliseconds  
         self.Time_label.after(200, self.update_time)  
     
@@ -257,6 +256,11 @@ class IMS:
             Sales_value = 0
             for net in bills: Sales_value += net[0] 
             self.lbl_count8.config(text=f'{str(Sales_value)}')
+
+            cur.execute("select Name from LogBook where Id=(SELECT max(Id) FROM LogBook);")
+            name=cur.fetchone()
+            self.note1.config(text = f"Welcome Back {name[0]}!\n We're glad You're here")
+
         
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to: {str(ex)}",parent=self.root)
